@@ -1,10 +1,8 @@
 # Sonic3
 A GUI application Built with Go and the Fyne UI toolkit for file compression, decompression, archiving, and extraction, designed for speed and efficiency.
 
-[![Go Report Card](https://goreportcard.com/badge/github.com/jeninsutradhar/sonic3)](https://goreportcard.com/report/github.com/jeninsutradhar/sonic3)
-![GitHub release (latest by date)](https://img.shields.io/github/v/release/jeninsutradhar/sonic3)
-![GitHub Workflow Status](https://img.shields.io/github/actions/workflow/status/jeninsutradhar/sonic3/main.yml?branch=main)
-![GitHub License](https://img.shields.io/github/license/jeninsutradhar/sonic3)
+![Screenshot_20241228_102517](https://github.com/user-attachments/assets/3129879a-d070-4029-b6f1-dd34c1258c60)
+
 
 ## Features
 
