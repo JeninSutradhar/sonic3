@@ -29,9 +29,8 @@ A GUI application Built with Go and the Fyne UI toolkit for file compression, de
 *   **Cross-Platform:** Runs on Windows, macOS, and Linux.
 
 ## Screenshots
-<p align="center">
-  <img src="https://github.com/user-attachments/assets/c478551f-f047-4297-b697-6e4a9a54b7b2" alt="Screenshot_20241228_102517" width=600>
-</p>
+![image](https://github.com/user-attachments/assets/e5770da9-c024-4306-bcf6-d4bec0480208)
+
 
 
 ## Getting Started
