@@ -325,6 +325,7 @@ func handleCompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter *
 			log.Printf("Successfully compressed '%s' to '%s' using %s.", cfg.Input[0], cfg.Output, cfg.Algorithm)
 		}
 	}
+	
 	return err
 }
 
@@ -337,6 +338,7 @@ func handleDecompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter
 	if err == nil {
 		log.Printf("Successfully decompressed '%s' to '%s'.", cfg.Input[0], cfg.Output)
 	}
+	
 	return err
 }
 
@@ -349,6 +351,7 @@ func handleArchiveMode(cfg Config, progressBar *widget.ProgressBar, logWriter *f
 	if err == nil {
 		log.Printf("Successfully created %s archive '%s' with %d files/directories using %s.", cfg.ArchiveFormat, cfg.Output, len(cfg.Input), cfg.Algorithm)
 	}
+	
 	return err
 }
 
