@@ -42,8 +42,7 @@ const (
 	chunkSize  = 32 * 1024 * 1024 // chunkSize is the chunk size for large files during encryption/decryption
 )
 
-// CompressionAlgorithm represents the available compression algorithms.
-type CompressionAlgorithm string
+type CompressionAlgorithm string // CompressionAlgorithm represents the available compression algorithms.
 
 const (
 	GzipAlgo   CompressionAlgorithm = "gzip"
