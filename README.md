@@ -1,7 +1,9 @@
 # Sonic3
 A GUI application Built with Go and the Fyne UI toolkit for file compression, decompression, archiving, and extraction, designed for speed and efficiency.
 
-![Screenshot_20241228_102517](https://github.com/user-attachments/assets/3129879a-d070-4029-b6f1-dd34c1258c60)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/3129879a-d070-4029-b6f1-dd34c1258c60" alt="Screenshot_20241228_102517">
+</p>
 
 
 ## Features
@@ -28,7 +30,6 @@ A GUI application Built with Go and the Fyne UI toolkit for file compression, de
 
 ## Screenshots
 
-*[Insert Screenshots of the application here. Show the main window, compression options, archiving options, and a success/error dialog.]*
 
 ## Getting Started
 
