@@ -11,7 +11,7 @@ A GUI application Built with Go and the Fyne UI toolkit for file compression, de
 *   **Multiple Operation Modes:**
     *   **Compress:** Compress individual files or directories.
     *   **Decompress:** Decompress supported compressed files.
-    *   **Archive:** Create archives (ZIP, TAR.GZ, TAR.XZ) from multiple files and directories.
+    *   **Archive:** Create archives (ZIP, TAR.GZ, TAR.XZ, 7Z[fix]) from multiple files and directories.
     *   **Extract:** Extract files from supported archives.
 *   **Wide Range of Compression Algorithms:**
     *   Gzip
