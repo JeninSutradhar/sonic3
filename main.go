@@ -99,13 +99,13 @@ type Config struct {
 func main() {
 	a := app.New()
 	w := a.NewWindow("Go Archiver and Compressor")
-	w.Resize(fyne.NewSize(700, 500))
+	w.Resize(fyne.NewSize(1000, 400))
 
 	logWriter := newFyneLogWriter(w)
 	log.SetOutput(logWriter) // Redirect log output to a GUI widget
 
 	mode, algo, archiveFormat, checksumAlgo := initModeAndAlgoControls()
-	inputEntry, outputEntry, passwordEntry, openFilesButton, openOutputButton := initFileControls(w)
+	inputEntry, outputEntry, passwordEntry, openFilesButton, openOutputButton := initFileControls()
 	compressDirCheck := initCompressDirCheck()
 	numRoutinesEntry := initNumRoutinesEntry()
 	zstdLevelEntry, argon2MemoryEntry, argon2TimeEntry, argon2ThreadsEntry := initAdvancedSettings()
@@ -162,7 +162,7 @@ func initModeAndAlgoControls() (*widget.RadioGroup, *widget.Select, *widget.Sele
 	return mode, algo, archiveFormat, checksumAlgo
 }
 
-func initFileControls(w fyne.Window) (*widget.Entry, *widget.Entry, *widget.Entry, *widget.Button, *widget.Button) {
+func initFileControls() (*widget.Entry, *widget.Entry, *widget.Entry, *widget.Button, *widget.Button) {
 	inputEntry := widget.NewEntry()
 	outputEntry := widget.NewEntry()
 	passwordEntry := widget.NewEntry()
@@ -203,40 +203,43 @@ func handleInputFileSelection(w fyne.Window, mode *widget.RadioGroup, compressDi
 			*inputFilePaths = []string{uc.URI().Path()}
 			inputEntry.SetText(uc.URI().Path())
 		}, w)
-		if mode.Selected == string(ExtractMode) {
-			fd.SetFilter(storageFilterForExtraction())
-		}
 		fd.Show()
-	} else if mode.Selected == string(ArchiveMode) || mode.Selected == string(CompressMode) && compressDirCheck.Checked {
-		dialog.ShowFolderOpen(func(uc fyne.ListableURI, err error) {
+	} else {
+		fd := dialog.NewFolderOpen(func(uc fyne.ListableURI, err error) {
 			if err != nil || uc == nil {
 				return
 			}
 			*inputFilePaths = []string{uc.Path()}
 			inputEntry.SetText(uc.Path())
 		}, w)
+		fd.Resize(fyne.NewSize(600, 600))
+		fd.Show()
 	}
 }
 
 func handleOutputFileSelection(w fyne.Window, mode *widget.RadioGroup, inputFilePaths []string, outputEntry *widget.Entry) {
 	if mode.Selected == string(DecompressMode) || mode.Selected == string(ExtractMode) {
-		dialog.ShowFolderOpen(func(uc fyne.ListableURI, err error) {
+		fd := dialog.NewFolderOpen(func(uc fyne.ListableURI, err error) {
 			if err != nil || uc == nil {
 				return
 			}
 			outputEntry.SetText(filepath.Join(uc.Path(), removeExtension(filepath.Base(inputFilePaths[0]))))
 		}, w)
+		fd.Resize(fyne.NewSize(600, 600)) // Increased size for better visibility
+		fd.Show()
 	} else {
-		dialog.ShowFileSave(func(uc fyne.URIWriteCloser, err error) {
+		fd := dialog.NewFileSave(func(uc fyne.URIWriteCloser, err error) {
 			if err != nil || uc == nil {
 				return
 			}
 			outputEntry.SetText(uc.URI().Path())
 		}, w)
+		fd.Resize(fyne.NewSize(600, 600)) // Increased size for better visibility
+		fd.Show()
 	}
 }
 
-func handleStartAction(w fyne.Window, mode *widget.RadioGroup, algo *widget.Select, archiveFormat *widget.Select, checksumAlgo *widget.Select, inputFilePaths []string, inputEntry *widget.Entry, outputEntry *widget.Entry, passwordEntry *widget.Entry, compressDirCheck *widget.Check, numRoutinesEntry *widget.Entry, zstdLevelEntry *widget.Entry, argon2MemoryEntry *widget.Entry, argon2TimeEntry *widget.Entry, argon2ThreadsEntry *widget.Entry, visualCue *widget.Label, progressBar **widget.ProgressBar, outputArea *widget.Entry, logWriter *fyneLogWriter) {
+func handleStartAction(w fyne.Window, mode *widget.RadioGroup, algo *widget.Select, archiveFormat *widget.Select, checksumAlgo *widget.Select, inputFilePaths []string, inputEntry *widget.Entry, outputEntry *widget.Entry, passwordEntry *widget.Entry, compressDirCheck *widget.Check, numRoutinesEntry *widget.Entry, zstdLevelEntry *widget.Entry, argon2MemoryEntry *widget.Entry, argon2TimeEntry *widget.Entry, argon2ThreadsEntry *widget.Entry, visualCue *widget.Label, progressBar **widget.ProgressBar, _ *widget.Entry, logWriter *fyneLogWriter) {
 	if mode.Selected == "" || inputEntry.Text == "" || outputEntry.Text == "" {
 		dialog.ShowError(errors.New("Please select mode, input, and output"), w)
 		return
@@ -295,7 +298,7 @@ func handleStartAction(w fyne.Window, mode *widget.RadioGroup, algo *widget.Sele
 	}()
 }
 
-func handleCompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter *fyneLogWriter, w fyne.Window) error {
+func handleCompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter *fyneLogWriter, _ fyne.Window) error {
 	if len(cfg.Input) != 1 {
 		log.Println("Error: Compress mode only supports single file or directory input.")
 		return errors.New("invalid input for compress mode")
@@ -325,7 +328,6 @@ func handleCompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter *
 			log.Printf("Successfully compressed '%s' to '%s' using %s.", cfg.Input[0], cfg.Output, cfg.Algorithm)
 		}
 	}
-	
 	return err
 }
 
@@ -338,7 +340,6 @@ func handleDecompressMode(cfg Config, progressBar *widget.ProgressBar, logWriter
 	if err == nil {
 		log.Printf("Successfully decompressed '%s' to '%s'.", cfg.Input[0], cfg.Output)
 	}
-	
 	return err
 }
 
@@ -351,7 +352,6 @@ func handleArchiveMode(cfg Config, progressBar *widget.ProgressBar, logWriter *f
 	if err == nil {
 		log.Printf("Successfully created %s archive '%s' with %d files/directories using %s.", cfg.ArchiveFormat, cfg.Output, len(cfg.Input), cfg.Algorithm)
 	}
-	
 	return err
 }
 
