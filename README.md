@@ -23,7 +23,7 @@ A GUI application Built with Go and the Fyne UI toolkit for file compression, de
     *   ZIP
     *   TAR.GZ
     *   TAR.XZ
-    *   *(7z - Placeholder, planned for future implementation)*
+    *   *(7z - planned for future implementation)*
 *   **Encryption:** Secure your compressed or archived files with password-based encryption using Argon2 for key derivation and AES-GCM for symmetric encryption.
 *   **Checksum Verification:** Calculate and verify file integrity using MD5 or CRC32 checksums.
 *   **Cross-Platform:** Runs on Windows, macOS, and Linux.
