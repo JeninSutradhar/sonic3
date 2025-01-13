@@ -111,4 +111,3 @@ This project is licensed under the [MIT License](LICENSE).
     *   [ulikunitz/xz](https://github.com/ulikunitz/xz) for XZ.
 *   Uses [golang.org/x/crypto/argon2](https://pkg.go.dev/golang.org/x/crypto/argon2) for secure password hashing.
  
-  [![BuyMeACoffee](https://img.shields.io/badge/Buy%20Me%20a%20Coffee-ffdd00?style=for-the-badge&logo=buy-me-a-coffee&logoColor=black)](https://buymeacoffee.com/jeninsutradhar) 
