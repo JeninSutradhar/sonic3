@@ -92,12 +92,7 @@ Go to the [Releases](https://github.com/jeninsutradhar/sonic3/releases) page and
 
 Contributions are welcome! Please feel free to open issues for bug reports or feature requests, or submit pull requests with your improvements.
 ***
-**⚠️ WARNING: This project is currently under active development.**
-Please be aware that this software is still in development and may contain bugs or unexpected behavior. There can be a risk of:
 
-*   **Data Corruption:** Files may be corrupted during compression, decompression, archiving, or extraction.
-*   **Incompatibility:** Compressed or archived files created with this application may not be compatible with other archivers or decompression tools.
-***
 
 ## License
 This project is licensed under the [MIT License](LICENSE).
