@@ -1,5 +1,4 @@
-package main
-// docs: sonic3-docs.vercel.app
+package mai
 import (
 	"archive/tar"
 	"archive/zip"
