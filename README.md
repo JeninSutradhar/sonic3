@@ -2,7 +2,7 @@
 A GUI application Built with Go and the Fyne UI toolkit for file compression, decompression, archiving, and extraction, designed for speed and efficiency.
 
 <p align="center">
-  <img src="https://github.com/user-attachments/assets/3129879a-d070-4029-b6f1-dd34c1258c60" alt="Screenshot_20241228_102517" width=300>
+  <img src="https://github.com/user-attachments/assets/3129879a-d070-4029-b6f1-dd34c1258c60" alt="Screenshot_20241228_102517" width=250>
 </p>
 
 
